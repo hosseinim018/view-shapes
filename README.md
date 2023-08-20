@@ -56,9 +56,27 @@ Represents a vertical line in a chart.
 #### Constructor
 
 ```javascript
-const vLine = new VerticalLine(x, canvas);
+const hLine = new HorizontalLine(y, canvas);
 ```
 Represents a horizontal line in a chart.
+#### Methods
+
+- `mousedown(event)`: Handles the mousedown event.
+
+- `mousemove(event)`: Handles the mousemove event.
+
+- `mouseup(event)`: Handles the mouseup event.
+
+- `draw(canvas)`: Draws the horizontal line on the canvas.
+---
+### `TrendLine`
+
+#### Constructor
+
+```javascript
+const tLine = new TrendLine(startPoint, endPoint, canvas);
+```
+Represents a trend line in a chart.
 #### Methods
 
 - `mousedown(event)`: Handles the mousedown event.
