@@ -87,6 +87,30 @@ Represents a trend line in a chart.
 
 - `draw(canvas)`: Draws the horizontal line on the canvas.
 ---
+### `Circle`
+
+#### Constructor
+
+```javascript
+const circle = new Circle(x, y, radius);
+```
+Represents a trend line in a chart.
+#### Methods
+- `initPoints()`: Initializes the center and radius points of the circle.
+- `mousedown(event)`: Handles the mousedown event.
+- `mousemove(event)`: Handles the mousemove event.
+- `mouseup(event)`: Handles the mouseup event.
+- `draw(canvas)`: Draws the circle on the canvas.
+#### Optional
+- Enable dragging by setting the `dragEnabled` property to true:
+```javascript
+circle.dragEnabled = true;
+```
+- Customize the appearance of the circle by modifying properties like `fillColor`.
+```javascript
+circle.fillColor = 'rgba(241, 18, 230, 0.36)';
+```
+---
 ## License
 
 This module is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
