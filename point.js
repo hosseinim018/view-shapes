@@ -6,6 +6,10 @@
  * by dragging it, updating its position, and drawing it on the canvas.
  *
  * @module point
+ *
+ * @example
+ * const canvas = document.getElementById('myCanvas');
+ * const point = new Point(50, 50);
  */
 import { calPoint, dist } from "./math";
 
