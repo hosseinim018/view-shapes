@@ -1,313 +1,287 @@
-import {calPoint} from "@/assets/chart/shapes/math";
-import {Point} from "@/assets/chart/shapes/point";
-import {regression} from "@/assets/chart/indicator/math";
+/**
+ * This module provides classes for drawing lines on a canvas.
+ * It includes the following line types:
+ *  - VerticalLine: Represents a vertical line on a chart.
+ *  - HorizontalLine: Represents a horizontal line on a chart.
+ *  - TrendLine: Represents a trend line on a chart.
+ *
+ * Each line type supports dragging and updating its position on the canvas.
+ * The lines can be customized with different styles and colors.
+ *
+ * Usage:
+ *  1. Import the module into your JavaScript file:
+ *     import { VerticalLine, HorizontalLine, TrendLine } from 'path/to/lines-module';
+ *
+ *  2. Create an instance of the desired line type, providing the necessary parameters:
+ *     const vLine = new VerticalLine(x, canvas);
+ *     const hLine = new HorizontalLine(y, canvas);
+ *     const tLine = new TrendLine(startPoint, endPoint, canvas);
+ *
+ *  3. Add event listeners to handle user interactions, such as mouse clicks and movement:
+ *     canvas.addEventListener('mousedown', vLine.mousedown.bind(vLine));
+ *     canvas.addEventListener('mousemove', vLine.mousemove.bind(vLine));
+ *     canvas.addEventListener('mouseup', vLine.mouseup.bind(vLine));
+ *
+ *  4. Call the `draw` method of each line instance to render the lines on the canvas:
+ *     vLine.draw(canvas);
+ *     hLine.draw(canvas);
+ *     tLine.draw(canvas);
+ *
+ * Note: The `canvas` parameter should be an HTMLCanvasElement object.
+ */
 
-export class verticalLine{
-    constructor(x, canvas) {
-        this.x = x
-        this.dragEnabled = false;
+import { calPoint } from ".math";
+import { Point } from ".point";
+import { regression } from "view-technical/view-technical";
 
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
+/**
+ * Represents a vertical line in a chart.
+ */
+export class VerticalLine {
+  /**
+   * Constructs a VerticalLine object.
+   * @param {number} x - The x-coordinate of the line.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which the line will be drawn.
+   */
+  constructor(x, canvas) {
+    this.x = x;
+    this.dragEnabled = false;
 
-        this.point = new Point(this.x, rect.height/2)
-        this.points = [this.point]
+    const cnx = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
+
+    this.point = new Point(this.x, rect.height / 2);
+    this.points = [this.point];
+  }
+
+  /**
+   * Handles the mousedown event.
+   * @param {MouseEvent} e - The mousedown event object.
+   */
+  mousedown(e) {
+    const p = calPoint(e);
+    const pointPressed = this.points.find((point) => point.inPoint(p.x, p.y));
+    if (pointPressed) {
+      pointPressed.isBeingDragged = true;
+      this.isDragged = true;
     }
+  }
 
-    mousedown(e) {
-        let p = calPoint(e)
-        const pointPressed = this.points.find(point => point.inPoint(p.x, p.y));
-        if (pointPressed) {
-            pointPressed.isBeingDragged = true;
-            this.isDragged = true;
-        }
+  /**
+   * Handles the mousemove event.
+   * @param {MouseEvent} e - The mousemove event object.
+   */
+  mousemove(e) {
+    const p = calPoint(e);
+    const pointDragged = this.points.find((point) => point.isBeingDragged);
+    if (pointDragged) {
+      if (this.point === pointDragged) {
+        this.x = p.x;
+        this.point.x = p.x;
+      }
     }
+  }
 
-    mousemove(e) {
-        let p = calPoint(e)
-        const pointDragged = this.points.find(point => point.isBeingDragged);
-        if (pointDragged) {
-            if (this.point == pointDragged) {
-                this.x = p.x
-                this.point.x = p.x;
-            }
-        }
+  /**
+   * Handles the mouseup event.
+   * @param {MouseEvent} e - The mouseup event object.
+   */
+  mouseup(e) {
+    this.points.forEach((p) => {
+      p.isBeingDragged = false;
+    });
+    this.isDragged = false;
+  }
+
+  /**
+   * Draws the vertical line on the canvas.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which to draw the line.
+   */
+  draw(canvas) {
+    const cnx = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
+
+    cnx.beginPath();
+    cnx.strokeStyle = "rgba(241, 18, 96, 0.36)";
+    cnx.lineWidth = 1.5;
+    cnx.setLineDash([]);
+    cnx.moveTo(this.x, 0);
+    cnx.lineTo(this.x, rect.height);
+    cnx.stroke();
+
+    if (this.dragEnabled) {
+      this.points.forEach((point) => {
+        point.draw(canvas);
+      });
     }
-
-    mouseup(e) {
-        this.points.forEach(p => {
-            p.isBeingDragged = false;
-        });
-        this.isDragged = false;
-    }
-
-    draw(canvas){
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
-        cnx.beginPath()
-        cnx.strokeStyle = 'rgba(241,18,96,0.36)'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(this.x, 0)
-        cnx.lineTo(this.x, rect.height)
-        cnx.stroke();
-
-        if (this.dragEnabled) {
-            this.points.forEach(point => {
-                point.draw(canvas)
-            });
-        }
-    }
-
+  }
 }
 
-export class horizontalLine{
-    constructor(y, canvas) {
-        this.y = y
-        this.dragEnabled = false;
+/**
+ * Represents a horizontal line in a chart.
+ */
+export class HorizontalLine {
+  /**
+   * Constructs a HorizontalLine object.
+   * @param {number} y - The y-coordinate of the line.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which the line will be drawn.
+   */
+  constructor(y, canvas) {
+    this.y = y;
+    this.dragEnabled = false;
 
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
+    const cnx = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
 
-        this.point = new Point(rect.width/2, this.y)
-        this.points = [this.point]
-    }
-    mousedown(e) {
-        let p = calPoint(e)
-        const pointPressed = this.points.find(point => point.inPoint(p.x, p.y));
-        if (pointPressed) {
-            pointPressed.isBeingDragged = true;
-            this.isDragged = true;
-        }
-    }
+    this.point = new Point(rect.width / 2, this.y);
+    this.points = [this.point];
+  }
 
-    mousemove(e) {
-        let p = calPoint(e)
-        const pointDragged = this.points.find(point => point.isBeingDragged);
-        if (pointDragged) {
-            if (this.point == pointDragged) {
-                this.y = p.y
-                this.point.y = p.y;
-            }
-        }
+  /**
+   * Handles the mousedown event.
+   * @param {MouseEvent} e - The mousedown event object.
+   */
+  mousedown(e) {
+    const p = calPoint(e);
+    const pointPressed = this.points.find((point) => point.inPoint(p.x, p.y));
+    if (pointPressed) {
+      pointPressed.isBeingDragged = true;
+      this.isDragged = true;
     }
-    mouseup(e) {
-        this.points.forEach(p => {
-            p.isBeingDragged = false;
-        });
-        this.isDragged = false;
-    }
+  }
 
-    draw(canvas){
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
-        cnx.beginPath()
-        cnx.strokeStyle = 'rgba(241,18,96,0.36)'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(0, this.y)
-        cnx.lineTo(rect.width, this.y)
-        cnx.stroke();
-
-        if (this.dragEnabled) {
-            this.points.forEach(point => {
-                point.draw(canvas)
-            });
-        }
+  /**
+   * Handles the mousemove event.
+   * @param {MouseEvent} e - The mousemove event object.
+   */
+  mousemove(e) {
+    const p = calPoint(e);
+    const pointDragged = this.points.find((point) => point.isBeingDragged);
+    if (pointDragged) {
+      if (this.point === pointDragged) {
+        this.y = p.y;
+        this.point.y = p.y;
+      }
     }
+  }
+
+  /**
+   * Handles the mouseup event.
+   * @param {MouseEvent} e - The mouseup event object.
+   */
+  mouseup(e) {
+    this.points.forEach((p) => {
+      p.isBeingDragged = false;
+    });
+    this.isDragged = false;
+  }
+
+  /**
+   * Draws the horizontal line on the canvas.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which to draw the line.
+   */
+  draw(canvas){
+    const cnx = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
+
+    cnx.beginPath();
+    cnx.strokeStyle = "rgba(241, 18, 96, 0.36)";
+    cnx.lineWidth = 1.5;
+    cnx.setLineDash([]);
+    cnx.moveTo(0, this.y);
+    cnx.lineTo(rect.width, this.y);
+    cnx.stroke();
+
+    if (this.dragEnabled) {
+      this.points.forEach((point) => {
+        point.draw(canvas);
+      });
+    }
+  }
 }
 
-export class crossLine{
-    constructor(x, y, canvas) {
-        this.x = x
-        this.y = y
+/**
+ * Represents a trend line in a chart.
+ */
+export class TrendLine {
+  /**
+   * Constructs a TrendLine object.
+   * @param {Point} startPoint - The starting point of the line.
+   * @param {Point} endPoint - The ending point of the line.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which the line will be drawn.
+   */
+  constructor(startPoint, endPoint, canvas) {
+    this.startPoint = startPoint;
+    this.endPoint = endPoint;
+    this.dragEnabled = false;
 
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
+    const cnx = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
 
-        this.point = new Point(this.x, this.y)
-        this.points = [this.point]
+    this.points = [this.startPoint, this.endPoint];
+  }
 
-        this.dragEnabled = false;
+  /**
+   * Handles the mousedown event.
+   * @param {MouseEvent} e - The mousedown event object.
+   */
+  mousedown(e) {
+    const p = calPoint(e);
+    const pointPressed = this.points.find((point) => point.inPoint(p.x, p.y));
+    if (pointPressed) {
+      pointPressed.isBeingDragged = true;
+      this.isDragged = true;
     }
+  }
 
-    mousedown(e){
-        let p = calPoint(e)
-        const pointPressed = this.points.find(point => point.inPoint(p.x, p.y));
-        if (pointPressed) {
-            pointPressed.isBeingDragged = true;
-            this.isDragged = true;
-        }
+  /**
+   * Handles the mousemove event.
+   * @param {MouseEvent} e - The mousemove event object.
+   */
+  mousemove(e) {
+    const p = calPoint(e);
+    const pointDragged = this.points.find((point) => point.isBeingDragged);
+    if (pointDragged) {
+      if (this.startPoint === pointDragged) {
+        this.startPoint.x = p.x;
+        this.startPoint.y = regression(this.startPoint.x);
+      } else if (this.endPoint === pointDragged) {
+        this.endPoint.x = p.x;
+        this.endPoint.y = regression(this.endPoint.x);
+      }
     }
+  }
 
-    mousemove(e){
-        let p = calPoint(e)
-        const pointDragged = this.points.find(point => point.isBeingDragged);
-        if (pointDragged) {
-            if (this.point == pointDragged) {
-                this.x = p.x
-                this.y = p.y
-                this.point.x = p.x;
-                this.point.y = p.y
-            }
-        }
+  /**
+   * Handles the mouseup event.
+   * @param {MouseEvent} e - The mouseup event object.
+   */
+  mouseup(e) {
+    this.points.forEach((p) => {
+      p.isBeingDragged = false;
+    });
+    this.isDragged = false;
+  }
+
+  /**
+   * Draws the trend line on the canvas.
+   * @param {HTMLCanvasElement} canvas - The canvas element on which to draw the line.
+   */
+  draw(canvas) {
+    const cnx = canvas.getContext("2d");
+
+    cnx.beginPath();
+    cnx.strokeStyle = "rgba(241, 18, 96, 0.36)";
+    cnx.lineWidth = 1.5;
+    cnx.setLineDash([]);
+    cnx.moveTo(this.startPoint.x, this.startPoint.y);
+    cnx.lineTo(this.endPoint.x, this.endPoint.y);
+    cnx.stroke();
+
+    if (this.dragEnabled) {
+      this.points.forEach((point) => {
+        point.draw(canvas);
+      });
     }
-
-    mouseup(e){
-        this.points.forEach(p => {
-            p.isBeingDragged = false;
-        });
-        this.isDragged = false;
-    }
-
-    draw(canvas){
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
-
-        cnx.beginPath()
-        cnx.strokeStyle = 'rgba(241,18,96,0.36)'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(this.x, 0)
-        cnx.lineTo(this.x, rect.height)
-        cnx.stroke();
-
-        cnx.beginPath()
-        cnx.strokeStyle = 'rgba(241,18,96,0.36)'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(0, this.y)
-        cnx.lineTo(rect.width, this.y)
-        cnx.stroke();
-
-        if (this.dragEnabled) {
-            this.points.forEach(point => {
-                point.draw(canvas)
-            });
-        }
-    }
-
-}
-
-export class trendline{
-    constructor(x1, x2, y1, y2) {
-        this.x1 = x1;
-        this.x2 = x2;
-        this.y1 = y1
-        this.y2 = y2;
-        this.dragEnabled = false;
-
-        // init points
-        this.p1 = new Point(this.x1, this.y1)
-        this.p2 = new Point(this.x2, this.y2)
-        this.points = [this.p1, this.p2]
-    }
-
-    mousedown(e) {
-        let p = calPoint(e)
-        const pointPressed = this.points.find(point => point.inPoint(p.x, p.y));
-
-        if (pointPressed) {
-            pointPressed.isBeingDragged = true;
-            this.isDragged = true;
-        }
-    }
-
-    mousemove(e){
-        let p = calPoint(e)
-        const pointDragged = this.points.find(point => point.isBeingDragged);
-
-        if (pointDragged) {
-            if (this.p1 == pointDragged) {
-                this.x1 = p.x
-                this.y1 = p.y
-                this.p1.x = p.x
-                this.p1.y = p.y
-            } else if (this.p2 == pointDragged) {
-                // pointDragged.set(p.x, p.y);
-                this.x2 = p.x
-                this.y2 = p.y
-                this.p2.x = p.x
-                this.p2.y = p.y
-            }
-        }
-    }
-
-    mouseup(e){
-        this.points.forEach(p => {
-            p.isBeingDragged = false;
-        });
-        this.isDragged = false;
-    }
-
-    draw(canvas){
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
-        cnx.beginPath()
-        cnx.strokeStyle = '#002aff'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(this.x1, this.y1)
-        cnx.lineTo(this.x2, this.y2);
-        cnx.stroke();
-
-        if (this.dragEnabled) {
-            this.points.forEach(point => {
-                point.draw(canvas)
-            });
-        }
-
-    }
-}
-
-export class reyLine extends trendline{
-    constructor(x1, x2, y1, y2) {
-        super(x1, x2, y1, y2)
-    }
-    draw(canvas) {
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
-        const y = regression(0, [this.x1, this.y1], [this.x2, this.y2])
-        const y2 = regression(rect.width, [this.x1, this.y1], [this.x2, this.y2])
-
-        cnx.beginPath()
-        cnx.strokeStyle = '#002aff'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(0, y)
-        cnx.lineTo(rect.width, y2);
-        cnx.stroke();
-
-        if (this.dragEnabled) {
-            this.points.forEach(point => {
-                point.draw(canvas)
-            });
-        }
-    }
-}
-
-export class xreyLine extends reyLine{
-    constructor(x1, x2, y1, y2) {
-        super(x1, x2, y1, y2);
-    }
-    draw(canvas) {
-        let cnx = canvas.getContext('2d')
-        let rect = canvas.getBoundingClientRect()
-        const y = regression(0, [this.x1, this.y1], [this.x2, this.y2])
-        const y2 = regression(rect.width, [this.x1, this.y1], [this.x2, this.y2])
-
-        cnx.beginPath()
-        cnx.strokeStyle = '#002aff'
-        cnx.lineWidth = 1.5
-        cnx.setLineDash([])
-        cnx.moveTo(this.x1, this.y1)
-        cnx.lineTo(rect.width, y2);
-        cnx.stroke();
-
-        if (this.dragEnabled) {
-            this.points.forEach(point => {
-                point.draw(canvas)
-            });
-        }
-    }
+  }
 }
