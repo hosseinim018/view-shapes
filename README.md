@@ -31,7 +31,7 @@ Creates a new draggable point with the specified initial position `(x, y)`.
 - `mouseup(event)`: Handles the mouseup event to stop dragging the point.
 
 - `draw(canvas)`: Draws the point on the canvas.
-
+---
 ### `VerticalLine`
 
 #### Constructor
@@ -43,16 +43,32 @@ Represents a vertical line in a chart.
 
 #### Methods
 
-- `mousedown(event)`: Handles the mousedown event to check if the point is being dragged.
+- `mousedown(event)`: Handles the mousedown event.
 
-- `mousemove(event)`: Handles the mousemove event to update the position of the point if it is being dragged.
+- `mousemove(event)`: Handles the mousemove event.
 
-- `mouseup(event)`: Handles the mouseup event to stop dragging the point.
+- `mouseup(event)`: Handles the mouseup event.
 
-- `draw(canvas)`: Draws the point on the canvas.
+- `draw(canvas)`: Draws the vertical line on the canvas.
+---
+### `HorizontalLine`
 
+#### Constructor
 
+```javascript
+const vLine = new VerticalLine(x, canvas);
+```
+Represents a horizontal line in a chart.
+#### Methods
 
+- `mousedown(event)`: Handles the mousedown event.
+
+- `mousemove(event)`: Handles the mousemove event.
+
+- `mouseup(event)`: Handles the mouseup event.
+
+- `draw(canvas)`: Draws the horizontal line on the canvas.
+---
 ## License
 
 This module is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
