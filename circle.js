@@ -26,8 +26,8 @@
  * Note: The `canvas` parameter should be an HTMLCanvasElement object.
  */
 
-import { Point } from "@/assets/chart/shapes/point";
-import { calPoint } from "@/assets/chart/shapes/math";
+import {Point} from "./point";
+import { calPoint } from "math";
 
 /**
  * Represents a Circle shape on a canvas.
