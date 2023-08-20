@@ -27,7 +27,7 @@
  */
 
 import {Point} from "./point";
-import { calPoint } from "math";
+import { calPoint } from "./math";
 
 /**
  * Represents a Circle shape on a canvas.

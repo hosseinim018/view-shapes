@@ -30,9 +30,9 @@
  * Note: The `canvas` parameter should be an HTMLCanvasElement object.
  */
 
-import { calPoint } from ".math";
-import { Point } from ".point";
-import { regression } from "view-technical/view-technical";
+import { calPoint } from "./math";
+import { Point } from "./point";
+import { regression } from "./view-technical/view-technical";
 
 /**
  * Represents a vertical line in a chart.
