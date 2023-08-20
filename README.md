@@ -112,7 +112,9 @@ circle.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
 ### `Range`
-
+Range class for drawing and manipulating range shapes on a canvas.
+It extends the trendline class and includes methods for handling mouse events, updating
+the range's position and dimensions, and rendering the range on the canvas.
 #### Constructor
 
 ```javascript
