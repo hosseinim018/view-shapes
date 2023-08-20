@@ -111,16 +111,17 @@ circle.dragEnabled = true;
 circle.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
-### `Range`
-Range class for drawing and manipulating range shapes on a canvas.
-It extends the trendline class and includes methods for handling mouse events, updating
-the range's position and dimensions, and rendering the range on the canvas.
+### `FibonacciRetracement`
+FibonacciRetracement class for drawing and displaying Fibonacci retracement levels on a canvas.
+It extends the trendline class and includes methods for handling mouse events, updating the retracement's position
+and dimensions, and rendering the retracement levels on the canvas.
+
 #### Constructor
 
 ```javascript
- const range = new Range(x1, x2, y1, y2);
+const retracement = new FibonacciRetracement(x1, x2, y1, y2);
 ```
-Represents a Range shape on a canvas, extending the `trendline` class.
+Represents a Fibonacci Retracement object on a canvas, extending the trendline class.
 #### Methods
 - `mousedown(event)`: Handles the mousedown event.
 - `mousemove(event)`: Handles the mousemove event.
@@ -131,9 +132,11 @@ Represents a Range shape on a canvas, extending the `trendline` class.
 ```javascript
 range.dragEnabled = true;
 ```
-- Customize the appearance of the range by modifying properties like `fillColor`.
+- Optional: Customize the appearance of the retracement levels by modifying properties like `strokeStyle`
+    and `lineWidth`.
 ```javascript
-range.fillColor = 'rgba(241, 18, 230, 0.36)';
+range.strokeStyle = 'rgba(241, 18, 230, 0.36)';
+range.lineWidth = 1.5;
 ```
 ---
 ## License
