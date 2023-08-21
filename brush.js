@@ -1,5 +1,5 @@
-import {calPoint} from "@/assets/chart/shapes/math";
-import {Point} from "@/assets/chart/shapes/point";
+import {calPoint} from "./math";
+import {Point} from "./point";
 
 export class Brush{
     dragEnabled = false

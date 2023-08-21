@@ -1,4 +1,4 @@
-import {Point} from "@/assets/chart/shapes/point";
+import {Point} from "./point";
 
 export class Rect{
     constructor(x, y, width, height) {

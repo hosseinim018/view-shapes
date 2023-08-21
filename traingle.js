@@ -1,5 +1,5 @@
-import {Point} from "@/assets/chart/shapes/point";
-import {calPoint} from "@/assets/chart/shapes/math";
+import {Point} from "./point";
+import {calPoint} from ./math";
 
 export class Triangle {
   constructor (x1, y1, x2, y2, x3, y3){

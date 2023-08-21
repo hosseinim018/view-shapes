@@ -1,5 +1,5 @@
-import {Point} from "@/assets/chart/shapes/point";
-import {calPoint} from "@/assets/chart/shapes/math";
+import {Point} from "./point";
+import {calPoint} from "./math";
 
 class Rect {
   constructor(x, y, p_nWidth, p_nHeight){
