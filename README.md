@@ -103,13 +103,13 @@ Represents a trend line in a chart.
 - `draw(canvas)`: Draws the circle on the canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
-```javascript
-circle.dragEnabled = true;
-```
+    ```javascript
+    circle.dragEnabled = true;
+    ```
 - Customize the appearance of the circle by modifying properties like `fillColor`.
-```javascript
-circle.fillColor = 'rgba(241, 18, 230, 0.36)';
-```
+    ```javascript
+    circle.fillColor = 'rgba(241, 18, 230, 0.36)';
+    ```
 ---
 ### `FibonacciRetracement`
 FibonacciRetracement class for drawing and displaying Fibonacci retracement levels on a canvas.
@@ -129,15 +129,15 @@ Represents a Fibonacci Retracement object on a canvas, extending the trendline c
 - `draw(canvas)`: Draws the range on the canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
-```javascript
-retracement.dragEnabled = true;
-```
+    ```javascript
+    retracement.dragEnabled = true;
+    ```
 - Customize the appearance of the retracement levels by modifying properties like `strokeStyle`
     and `lineWidth`.
-```javascript
-retracement.strokeStyle = 'rgba(241, 18, 230, 0.36)';
-retracement.lineWidth = 1.5;
-```
+    ```javascript
+    retracement.strokeStyle = 'rgba(241, 18, 230, 0.36)';
+    retracement.lineWidth = 1.5;
+    ```
 ---
 ### `Channel`
 
@@ -161,13 +161,13 @@ Represents a Channel object on a canvas.
 - `draw(canvas)`: Draws the Channel on the canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
-```javascript
-channel.dragEnabled = true;
-```
+    ```javascript
+    channel.dragEnabled = true;
+    ```
 - Customize the appearance of the channel by modifying properties like `fillColor`.
-```javascript
-channel.fillColor = 'rgba(241, 18, 230, 0.36)';
-```
+    ```javascript
+    channel.fillColor = 'rgba(241, 18, 230, 0.36)';
+    ```
 ---
 ### `Brush`
 
@@ -188,13 +188,13 @@ Represents a Brush object on a canvas.
 - `draw(canvas)`: Draws the Brush on the canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
-```javascript
-brush.dragEnabled = true;
-```
+    ```javascript
+    brush.dragEnabled = true;
+    ```
 - Customize the appearance of the Brush by modifying properties like `fillColor`.
-```javascript
-brush.fillColor = 'rgba(241, 18, 230, 0.36)';
-```
+    ```javascript
+    brush.fillColor = 'rgba(241, 18, 230, 0.36)';
+    ```
 ---
 ### `Triangle`
 
