@@ -183,7 +183,6 @@ const rectangle = new Rectangle(x, y, width, height);
 - `width` (number): The width of the rectangle.
 - `height` (number): The height of the rectangle.
 
-Please note that the specific properties and methods of each shape object may vary. Refer to the documentation and implementation of each shape object for more details on how to use them effectively in your charting application.
 ---
 ### `Circle`
 
