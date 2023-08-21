@@ -227,7 +227,7 @@ triangle.fillColor = 'rgba(241, 18, 230, 0.36)';
 ---
 ### `Rect`
 
-The Rect class provides functionality to create and manipulate a rectangle
+The `Rect` class provides functionality to create and manipulate a rectangle
 on a canvas. It allows for dragging of individual points or the entire rectangle
 within the canvas. The rectangle can be drawn with a specified fill color and can
 detect whether given coordinates are inside the rectangle.
@@ -254,6 +254,70 @@ rectangle.dragEnabled = true;
 rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
+### `Lable`
+
+The `Lable` function creates a label object that provides functionality to draw lines and rectangles with labels on a canvas.
+
+#### Function Signature
+
+```javascript
+function Lable(cnx, cnxYaxis, yscale, width, margin, lastData, color)
+```
+
+#### Parameters
+
+- `cnx` (CanvasRenderingContext2D): The canvas rendering context for drawing lines.
+- `cnxYaxis` (CanvasRenderingContext2D): The canvas rendering context for drawing rectangles and labels.
+- `yscale` (Function): The y-scale function for mapping data values to pixel coordinates.
+- `width` (number): The width of the canvas.
+- `margin` (Object): The margin object containing top, right, bottom, and left values.
+- `lastData` (number\[\]): The array of data values representing the last data point.
+- `color` (string, optional): The color of the line and rectangle. If not provided, it is determined based on the data values.
+
+#### Returns
+
+- An object containing the following methods:
+
+  - `line(i)`: Draws a line on the canvas using the specified index of the data value.
+  - `lable(i)`: Draws a rectangle with a label on the y-axis using the specified index of the data value.
+
+#### Usage
+
+```javascript
+// Create canvas contexts and configure the canvas
+const cnx = canvas.getContext('2d');
+const cnxYaxis = canvas.getContext('2d');
+const yscale = d3.scaleLinear().range([height, 0]).domain([0, maxYValue]);
+const width = canvas.width;
+const margin = { top: 10, right: 20, bottom: 30, left: 40 };
+const lastData = [0, 10, 5, 15, 7]; // Example data values
+const color = "#FF0000"; // Optional color for the line and rectangle
+
+// Create a label object
+const label = Lable(cnx, cnxYaxis, yscale, width, margin, lastData, color);
+
+// Draw a line on the canvas
+label.line();
+
+// Draw a rectangle with a label on the y-axis
+label.lable();
+```
+
+#### Optional
+
+- Enable dragging by setting the `dragEnabled` property to true:
+
+  ```javascript
+  rectangle.dragEnabled = true;
+  ```
+
+- Customize the appearance of the Rect by modifying properties like `fillColor`:
+
+  ```javascript
+  rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
+  ```
+
+This documentation provides an overview of the `Lable` function, its parameters, return value, and usage examples. It also highlights optional features and customization options available for the label object.
 ## License
 
 This module is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
