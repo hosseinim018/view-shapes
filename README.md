@@ -237,7 +237,7 @@ detect whether given coordinates are inside the rectangle.
 ```javascript
 const rectangle = new Rect(x, y, width, height);
 ```
-Represents a Rect object on a canvas..
+Represents a Rect object on a canvas.
 #### Methods
 - `mousedown(event)`: Handles the mousedown event.
 - `mousemove(event)`: Handles the mousemove event.
