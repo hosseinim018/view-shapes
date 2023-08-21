@@ -132,11 +132,41 @@ Represents a Fibonacci Retracement object on a canvas, extending the trendline c
 ```javascript
 range.dragEnabled = true;
 ```
-- Optional: Customize the appearance of the retracement levels by modifying properties like `strokeStyle`
+- Customize the appearance of the retracement levels by modifying properties like `strokeStyle`
     and `lineWidth`.
 ```javascript
 range.strokeStyle = 'rgba(241, 18, 230, 0.36)';
 range.lineWidth = 1.5;
+```
+---
+### `Channel`
+
+The Channel class provides functionality to create and manipulate a rectangular channel
+on a canvas. It allows for the dragging of individual corner points or the entire channel
+within the canvas. The channel can be drawn with a specified fill color and can detect
+whether given coordinates are inside the channel.
+
+#### Constructor
+
+```javascript
+const channel = new Channel(x, y, x2, width, height);
+```
+Represents a Channel object on a canvas.
+
+#### Methods
+- `inPoint(x, y)`: Checks if the given coordinates are inside the Channel.
+- `mousedown(event)`: Handles the mousedown event.
+- `mousemove(event)`: Handles the mousemove event.
+- `mouseup(event)`: Handles the mouseup event.
+- `draw(canvas)`: Draws the Channel on the canvas.
+#### Optional
+- Enable dragging by setting the `dragEnabled` property to true:
+```javascript
+range.dragEnabled = true;
+```
+- Customize the appearance of the channel by modifying properties like `fillColor`.
+```javascript
+range.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
 ## License
