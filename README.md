@@ -130,13 +130,13 @@ Represents a Fibonacci Retracement object on a canvas, extending the trendline c
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
 ```javascript
-range.dragEnabled = true;
+retracement.dragEnabled = true;
 ```
 - Customize the appearance of the retracement levels by modifying properties like `strokeStyle`
     and `lineWidth`.
 ```javascript
-range.strokeStyle = 'rgba(241, 18, 230, 0.36)';
-range.lineWidth = 1.5;
+retracement.strokeStyle = 'rgba(241, 18, 230, 0.36)';
+retracement.lineWidth = 1.5;
 ```
 ---
 ### `Channel`
@@ -162,11 +162,38 @@ Represents a Channel object on a canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
 ```javascript
-range.dragEnabled = true;
+channel.dragEnabled = true;
 ```
 - Customize the appearance of the channel by modifying properties like `fillColor`.
 ```javascript
-range.fillColor = 'rgba(241, 18, 230, 0.36)';
+channel.fillColor = 'rgba(241, 18, 230, 0.36)';
+```
+---
+### `Brush`
+
+The Brush class provides functionality to draw freehand lines on a canvas.
+It tracks the mouse movement to capture the points and renders the lines on the canvas.
+
+#### Constructor
+
+```javascript
+const brush = new Brush();
+```
+Represents a Brush object on a canvas.
+
+#### Methods
+- `mousedown(event)`: Handles the mousedown event.
+- `mousemove(event)`: Handles the mousemove event.
+- `mouseup(event)`: Handles the mouseup event.
+- `draw(canvas)`: Draws the Brush on the canvas.
+#### Optional
+- Enable dragging by setting the `dragEnabled` property to true:
+```javascript
+brush.dragEnabled = true;
+```
+- Customize the appearance of the Brush by modifying properties like `fillColor`.
+```javascript
+brush.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
 ## License
