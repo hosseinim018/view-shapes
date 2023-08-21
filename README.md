@@ -249,7 +249,7 @@ Represents a Rect object on a canvas.
 ```javascript
 rectangle.dragEnabled = true;
 ```
-- Customize the appearance of the rectangle by modifying properties like `fillColor`.
+- Customize the appearance of the Rect by modifying properties like `fillColor`.
 ```javascript
 rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
