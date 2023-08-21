@@ -9,7 +9,77 @@ first clone view-technical to this repo:
 git clone https://github.com/hosseinim018/view-technical.git
 ```
 ## API
+Certainly! Here's the documentation for the provided module:
 
+### `createVector`
+
+The `createVector` function creates a vector with the specified x and y coordinates.
+
+#### Parameters
+
+- `x` (number): The x-coordinate of the vector.
+- `y` (number): The y-coordinate of the vector.
+
+#### Returns
+
+- (Object): The created vector object with properties `x` and `y`.
+
+#### Usage
+
+```javascript
+// Create a vector with coordinates (3, 4)
+const vector = createVector(3, 4);
+console.log(vector); // Output: { x: 3, y: 4 }
+```
+
+### `dist`
+
+The `dist` function calculates the distance between two points using the distance formula.
+
+#### Parameters
+
+- `x1` (number): The x-coordinate of the first point.
+- `y1` (number): The y-coordinate of the first point.
+- `x2` (number): The x-coordinate of the second point.
+- `y2` (number): The y-coordinate of the second point.
+
+#### Returns
+
+- (number): The distance between the two points.
+
+#### Usage
+
+```javascript
+// Calculate the distance between points (1, 2) and (4, 6)
+const distance = dist(1, 2, 4, 6);
+console.log(distance); // Output: 5
+```
+
+### `calPoint`
+
+The `calPoint` function calculates the coordinates of a point relative to a canvas based on a given event object.
+
+#### Parameters
+
+- `e` (Event): The event object representing the event.
+
+#### Returns
+
+- (Object): The coordinates of the point relative to the canvas with properties `x` and `y`.
+
+#### Usage
+
+Assuming a canvas element with id "myCanvas" exists in the HTML:
+
+```javascript
+const canvas = document.getElementById("myCanvas");
+canvas.addEventListener("click", (e) => {
+  // Calculate the coordinates of the clicked point relative to the canvas
+  const point = calPoint(e);
+  console.log(point); // Output: { x: 50, y: 70 }
+});
+```
+---
 ### `Point`
 
 #### Constructor
