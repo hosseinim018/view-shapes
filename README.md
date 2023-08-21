@@ -196,6 +196,35 @@ brush.dragEnabled = true;
 brush.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
+### `Triangle`
+
+The Triangle class provides functionality to create and manipulate a triangle
+on a canvas. It allows for dragging of individual points or the entire triangle
+within the canvas. The triangle can be drawn with a specified fill color and can
+detect whether given coordinates are inside the triangle.
+
+#### Constructor
+
+```javascript
+const triangle = new Triangle(x1, y1, x2, y2, x3, y3);
+```
+Represents a Triangle object on a canvas.
+
+#### Methods
+- `mousedown(event)`: Handles the mousedown event.
+- `mousemove(event)`: Handles the mousemove event.
+- `mouseup(event)`: Handles the mouseup event.
+- `draw(canvas)`: Draws the Brush on the canvas.
+#### Optional
+- Enable dragging by setting the `dragEnabled` property to true:
+```javascript
+triangle.dragEnabled = true;
+```
+- Customize the appearance of the triangle by modifying properties like `fillColor`.
+```javascript
+triangle.fillColor = 'rgba(241, 18, 230, 0.36)';
+```
+---
 ## License
 
 This module is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
