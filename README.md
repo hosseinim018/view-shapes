@@ -8,6 +8,239 @@ first clone view-technical to this repo:
 ```git
 git clone https://github.com/hosseinim018/view-technical.git
 ```
+Based on the provided code, it seems like you have a module that exports various shape objects for charting purposes. Below is the documentation for each shape:
+Certainly! Here's the documentation for the updated JavaScript module:
+
+## `shape` Module
+
+The `shape` module exports various shape objects that can be used for charting purposes.
+
+### Usage
+
+```javascript
+import { shape } from 'path/to/shape';
+
+// Access the available shape objects
+const { Circle, verticalLine, horizontalLine, crossLine, trendline, reyLine, xreyLine, fibonacciRetracement, Range, Rect, Point, Brush, Channel, Triangle, Rectangle } = shape;
+
+// Create instances of the shape objects and use them for charting
+const circle = new Circle();
+const line = verticalLine();
+const range = new Range();
+// ...
+```
+
+### Exported Shape Objects
+
+The `shape` module exports the following shape objects:
+
+#### `Circle`
+
+A circle shape for charting.
+
+```javascript
+const circle = new Circle(radius);
+```
+
+- `radius` (number): The radius of the circle.
+
+#### `verticalLine`
+
+A vertical line shape for charting.
+
+```javascript
+const line = verticalLine();
+```
+
+#### `horizontalLine`
+
+A horizontal line shape for charting.
+
+```javascript
+const line = horizontalLine();
+```
+
+#### `crossLine`
+
+A cross line shape for charting.
+
+```javascript
+const line = crossLine();
+```
+
+#### `trendline`
+
+A trendline shape for charting.
+
+```javascript
+const line = trendline();
+```
+
+#### `reyLine`
+
+A rey line shape for charting.
+
+```javascript
+const line = reyLine();
+```
+
+#### `xreyLine`
+
+An xrey line shape for charting.
+
+```javascript
+const line = xreyLine();
+```
+
+#### `fibonacciRetracement`
+
+A Fibonacci retracement shape for charting.
+
+```javascript
+const fib = new fibonacciRetracement(start, end);
+```
+
+- `start` (number): The starting value of the Fibonacci retracement.
+- `end` (number): The ending value of the Fibonacci retracement.
+
+#### `Range`
+
+A range shape for charting.
+
+```javascript
+const range = new Range(start, end);
+```
+
+- `start` (number): The starting value of the range.
+- `end` (number): The ending value of the range.
+
+#### `Rect`
+
+A rectangle shape for charting.
+
+```javascript
+const rect = new Rect(width, height);
+```
+
+- `width` (number): The width of the rectangle.
+- `height` (number): The height of the rectangle.
+
+#### `Point`
+
+A point shape for charting.
+
+```javascript
+const point = new Point(x, y);
+```
+
+- `x` (number): The x-coordinate of the point.
+- `y` (number): The y-coordinate of the point.
+
+#### `Brush`
+
+A brush shape for charting.
+
+```javascript
+const brush = new Brush(size, color);
+```
+
+- `size` (number): The size of the brush.
+- `color` (string): The color of the brush.
+
+#### `Channel`
+
+A channel shape for charting.
+
+```javascript
+const channel = new Channel(startPoint, endPoint);
+```
+
+- `startPoint` (Point): The starting point of the channel.
+- `endPoint` (Point): The ending point of the channel.
+
+#### `Triangle`
+
+A triangle shape for charting.
+
+```javascript
+const triangle = new Triangle(point1, point2, point3);
+```
+
+- `point1` (Point): The first point of the triangle.
+- `point2` (Point): The second point of the triangle.
+- `point3` (Point): The third point of the triangle.
+
+#### `Rectangle`
+
+A rectangle shape for charting.
+
+```javascript
+const rectangle = new Rectangle(x, y, width, height);
+```
+
+- `x` (number): The x-coordinate of the top-left corner of the rectangle.
+- `y` (number): The y-coordinate of the top-left corner of the rectangle.
+- `width` (number): The width of the rectangle.
+- `height` (number): The height of the rectangle.
+
+Please note that the specific properties and methods of each shape object may vary. Refer to the documentation and implementation of each shape object for more details on how to use them effectively in your charting application.
+---
+### `Circle`
+
+A circle shape for charting.
+
+### `verticalLine`
+
+A vertical line shape for charting.
+
+### `horizontalLine`
+
+A horizontal line shape for charting.
+
+### `crossLine`
+
+A cross line shape for charting.
+
+### `trendline`
+
+A trendline shape for charting.
+
+### `reyLine`
+
+A rey line shape for charting.
+
+### `xreyLine`
+
+An xrey line shape for charting.
+
+### `fibonacciRetracement`
+
+A Fibonacci retracement shape for charting.
+
+### `Range`
+
+A range shape for charting.
+
+### `Rect`
+
+A rectangle shape for charting.
+
+### `Point`
+
+A point shape for charting.
+
+### `Brush`
+
+A brush shape for charting.
+
+### `Channel` A channel shape for charting.
+
+### `Triangle` A triangle shape for charting.
+
+### `Rectangle` A rectangle shape for charting.
+
+
+
 ## API
 Certainly! Here's the documentation for the provided module:
 
