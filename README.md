@@ -217,13 +217,13 @@ Represents a Triangle object on a canvas.
 - `draw(canvas)`: Draws the Brush on the canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
-```javascript
-triangle.dragEnabled = true;
-```
+    ```javascript
+    triangle.dragEnabled = true;
+    ```
 - Customize the appearance of the triangle by modifying properties like `fillColor`.
-```javascript
-triangle.fillColor = 'rgba(241, 18, 230, 0.36)';
-```
+    ```javascript
+    triangle.fillColor = 'rgba(241, 18, 230, 0.36)';
+    ```
 ---
 ### `Rect`
 
@@ -245,13 +245,13 @@ Represents a Rect object on a canvas.
 - `draw(canvas)`: Draws the Brush on the canvas.
 #### Optional
 - Enable dragging by setting the `dragEnabled` property to true:
-```javascript
-rectangle.dragEnabled = true;
-```
+    ```javascript
+    rectangle.dragEnabled = true;
+    ```
 - Customize the appearance of the Rect by modifying properties like `fillColor`.
-```javascript
-rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
-```
+    ```javascript
+    rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
+    ```
 ---
 ### `Lable`
 
@@ -315,8 +315,62 @@ label.lable();
   ```javascript
   rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
   ```
+---
+### `crosshair`
 
-This documentation provides an overview of the `Lable` function, its parameters, return value, and usage examples. It also highlights optional features and customization options available for the label object.
+The `crosshair` function draws crosshairs on a canvas at the specified coordinates using the provided rendering contexts and scales.
+
+#### Parameters
+
+- `x` (number): The x-coordinate of the crosshair.
+- `y` (number): The y-coordinate of the crosshair.
+- `cnxYaxis` (CanvasRenderingContext2D): The canvas rendering context for the y-axis.
+- `cnxXaxis` (CanvasRenderingContext2D): The canvas rendering context for the x-axis.
+- `xscale` (Function): The x-scale function for mapping data values to pixel coordinates.
+- `yscale` (Function): The y-scale function for mapping data values to pixel coordinates.
+- `margin` (Object): The margin object containing top, right, bottom, and left values.
+
+#### Usage
+
+```javascript
+// Create canvas rendering contexts and configure the canvas
+const cnxYaxis = canvas.getContext('2d');
+const cnxXaxis = canvas.getContext('2d');
+const xscale = d3.scaleLinear().range([0, width]).domain([0, maxXValue]);
+const yscale = d3.scaleLinear().range([height, 0]).domain([0, maxYValue]);
+const margin = { top: 10, right: 20, bottom: 30, left: 40 };
+
+// Define the coordinates of the crosshair
+const x = 100;
+const y = 200;
+
+// Draw the crosshair on the canvas
+crosshair(x, y, cnxYaxis, cnxXaxis, xscale, yscale, margin);
+```
+
+#### Example
+
+The following example demonstrates how to use the `crosshair` function to draw crosshairs on a canvas.
+
+```javascript
+// Create canvas rendering contexts and configure the canvas
+const canvas = document.getElementById("myCanvas");
+const cnxYaxis = canvas.getContext("2d");
+const cnxXaxis = canvas.getContext("2d");
+const width = canvas.width;
+const height = canvas.height;
+const xscale = d3.scaleLinear().range([0, width]).domain([0, 100]);
+const yscale = d3.scaleLinear().range([height, 0]).domain([0, 100]);
+const margin = { top: 10, right: 20, bottom: 30, left: 40 };
+
+// Define the coordinates of the crosshair
+const x = 50;
+const y = 70;
+
+// Draw the crosshair on the canvas
+crosshair(x, y, cnxYaxis, cnxXaxis, xscale, yscale, margin);
+```
+---
 ## License
 
 This module is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
