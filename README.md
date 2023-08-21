@@ -225,6 +225,35 @@ triangle.dragEnabled = true;
 triangle.fillColor = 'rgba(241, 18, 230, 0.36)';
 ```
 ---
+### `Rect`
+
+The Rect class provides functionality to create and manipulate a rectangle
+on a canvas. It allows for dragging of individual points or the entire rectangle
+within the canvas. The rectangle can be drawn with a specified fill color and can
+detect whether given coordinates are inside the rectangle.
+
+#### Constructor
+
+```javascript
+const rectangle = new Rect(x, y, width, height);
+```
+Represents a Rect object on a canvas.
+
+#### Methods
+- `mousedown(event)`: Handles the mousedown event.
+- `mousemove(event)`: Handles the mousemove event.
+- `mouseup(event)`: Handles the mouseup event.
+- `draw(canvas)`: Draws the Brush on the canvas.
+#### Optional
+- Enable dragging by setting the `dragEnabled` property to true:
+```javascript
+rectangle.dragEnabled = true;
+```
+- Customize the appearance of the rectangle by modifying properties like `fillColor`.
+```javascript
+rectangle.fillColor = 'rgba(241, 18, 230, 0.36)';
+```
+---
 ## License
 
 This module is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
