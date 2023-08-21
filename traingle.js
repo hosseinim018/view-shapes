@@ -1,5 +1,5 @@
 import {Point} from "./point";
-import {calPoint} from ./math";
+import {calPoint} from "./math";
 
 export class Triangle {
   constructor (x1, y1, x2, y2, x3, y3){
